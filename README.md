@@ -14,11 +14,11 @@ Prepared for the KARKABA brand in Egypt. This document answers the sections in t
 
 3- Team Members: Only 4 persons worked out of 5 
 -
-- Khaled Harb (Team Leader)
-- Marwa Hamdi
-- Mamhoud Negm
-- Israa
-- Thomas Ashraf    (Didn’t work at all in Project)
+1. Khaled Harb (Team Leader)
+2. Marwa Hamdi
+3. Mamhoud Negm
+4. Israa
+5. Thomas Ashraf    (Didn’t work at all in Project)
 
 4- Work Plan
 -
@@ -60,64 +60,56 @@ Key Deliverable: Fully demonstrable workflow integration/simulation for AI Promp
 5- Roles & Responsibilities:
 -
 1. Khaled Harb: Team Leader & Project Manager & Workflow Automation & Campaign Strategy
-
- . Overall project coordination
- 
- . Workflow schedule oversight
- 
- . Workflow Automation: Prompt library, n8n/Google Sheets demo, workflow testing
- 
- . Campaign brief & Audience
- 
- . Final graduation presentation delivery.
- 
- Tools: Chatgpt, Gemini, n8n, Google Sheets, Google Trends
-
-2. Marwa Hamdi: Marketing & Research 
-
- . Audience
- 
- . Competitor research
- 
- . Campaign brief
- 
- . Copy
- 
- . KPI framework
- 
- Tools: Chatgpt, Gemini, Google Trends
-
+   - Overall project coordination
+   - Workflow schedule oversight
+   - Workflow Automation: Prompt library, n8n/Google Sheets demo, workflow testing
+   - Campaign brief & Audience
+   - Final graduation presentation delivery
+   - Tools: Chatgpt, Gemini, n8n, Google Sheets, Google Trends 
+   
+2. Marwa Hamdi: Marketing & Research
+   - Audience
+   - Competitor research
+   - Campaign brief
+   - Copy
+   - KPI framework
+   - Tools: Chatgpt, Gemini, Google Trends
+   
 3. Israa: Graphic Designer
-
- . Visual system
- 
- . Brand kit
- 
- . Campaign visuals
- 
- . Templates
- 
-  Tools: Figma, CapCut Dreamina, Gemini, ElevenLabs
-
-
+   - Visual system
+   - Brand kit
+   - Campaign visuals
+   - Templates
+   - Tools: Figma, CapCut Dreamina, Gemini, ElevenLab
+  
 4. Mahmoud Negm: Media Buying
-
- . Meta Ads Manager
- 
- . Ad Meta Manager Campaign
- 
-  Tools: Meta Ads Manager
+   - Meta Ads Manager
+   - Ad Meta Manager Campaign
 
 6- KPIs
 -
 1. Brand consistency:
-
-Proposed target: 100% of final assets pass the agreed brand checklist. 
-
-Measurement: Checklist for colors, typography, tone, logo direction, Arabic readability and CTA. 
-
+   - Proposed target: 100% of final assets pass the agreed brand checklist.
+   - Measurement: Checklist for colors, typography, tone, logo direction, Arabic readability and CTA.
 2. Workflow reliability:
+   - Proposed target: At least 9 of 10 test runs complete without a blocking error.
+   - Measurement: Run log; record failures and manual interventions.
 
-Proposed target: At least 9 of 10 test runs complete without a blocking error.
+7- Instructor: Asmaa Abdulmajeed
+-
 
-Measurement: Run log; record failures and manual interventions.
+8- Project Files:
+-
+1. 1.KARKABA_AI_Visual_Campaign_Brand_Kit_Bilingual.docx
+2. 2.KARKABA_Marketing_Campaign_Strategy_OneShelf.docx
+3. 3.KARKABA_OneShelf_Visual_Assets.docx
+4. Logo: KARKABA.Logo.jpg
+5. Cover: KARKABA.Cover.jpg 
+6. Posts: KARKABA.Post.1.jpeg / KARKABA.Post.2.jpeg / KARKABA.Post.3.jpeg / KARKABA.Post.4.jpeg
+7. Reel Video: KARKABA.Facebook.Reel.mp4 / KARKABA.Instagram.Reel.mp4
+8. Brand Kit: KARKABA.Full.BrandKit.Guidelines.pdf
+9. Automation:
+   - n8n AI Automation: KARKABA.Automation.AI.Visual.Prompt.Library.json 
+   - Postman Webhook Post data: KARKABA.Automation.AI.Visual.Prompt.Library.Postman.Collection.json
+   - AI Automation video: KARKABA.Automation.AI.Visual.Prompt.Library.Postman.Collection.json
+     
