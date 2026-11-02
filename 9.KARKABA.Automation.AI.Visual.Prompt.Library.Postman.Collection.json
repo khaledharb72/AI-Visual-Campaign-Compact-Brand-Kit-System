@@ -1,0 +1,83 @@
+{
+  "info": {
+    "_postman_id": "0afd72b5-da38-4ab1-932a-37da8b8be50e",
+    "name": "DEPI.Final.Project.AI.Marketing.Prompt.Library",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "635591"
+  },
+  "item": [
+    {
+      "name": "2.KARKABA_Reusable_AI_Visual_Prompt_Library_Human_Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"prompt_id\": \"prompt-brief-2026-003\",\r\n  \"request_id\": \"brief-2026-003\",\r\n  \"version\": 1,\r\n  \"decision\": \"APPROVED\",\r\n  \"reviewer\": \"Marketing Manager\",\r\n  \"notes\": \"Approved. Brand tone, composition, and visual direction are aligned.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://khaledh.app.n8n.cloud/webhook-test/karkaba-visual-prompt-review",
+          "protocol": "https",
+          "host": [
+            "khaledh",
+            "app",
+            "n8n",
+            "cloud"
+          ],
+          "path": [
+            "webhook-test",
+            "karkaba-visual-prompt-review"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2.KARKABA_Reusable_AI_Visual_Prompt_Library_Full_Workflow_OneShelf",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"request_id\": \"brief-2026-003\",\r\n  \"campaign_name\": \"رحلة إلى بيت بدون كراكيب - ابدئي برف واحد بس\",\r\n  \"visual_goal\": \"عرض خطوات عملية وبسيطة لترتيب المنزل دون الشعور بالإرهاق، من خلال التركيز على تنظيم رف واحد وتصنيف الأغراض بهدوء وتبرع/بيع الزائد.\",\r\n  \"subject\": \"امرأة محجبة تقوم بترتيب وتصنيف الأغراض في منزلها خطوة بخطوة وإعادة الهدوء والتنظيم لمساحتها\",\r\n  \"platform\": \"Facebook Post\",\r\n  \"format\": \"5 Vertical Images (9:16)\",\r\n  \"visual_style\": \"دافئ، مشجع، هادئ، واقعي (Warm, encouraging, authentic lifestyle with warm tones and neat aesthetic)\",\r\n  \"key_message\": \"حاسّة إن ترتيب البيت كله مهمة مستحيلة؟ ابدئي برف واحد بس. مش لازم تفضي البيت كله في يوم، خطوة صغيرة ممكن تفرق في إحساسك بالمساحة.\",\r\n  \"cta\": \"ابدئي دلوقتي - كَرْكَبَة... الكراكيب ليها قيمة\",\r\n  \"brand_kit_key\": \"KARKABA_BRAND_KIT_OFFICIAL\",\r\n  \"variation_count\": 3,\r\n  \"version\": 1,\r\n  \"parent_prompt_id\": \"\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://khaledh.app.n8n.cloud/webhook-test/karkaba-visual-prompt-library",
+          "protocol": "https",
+          "host": [
+            "khaledh",
+            "app",
+            "n8n",
+            "cloud"
+          ],
+          "path": [
+            "webhook-test",
+            "karkaba-visual-prompt-library"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,1578 @@
+{
+  "name": "Final.KARKABA - Reusable AI Visual Prompt Library",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "karkaba-visual-prompt-library",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "e70e0ffe-dfe2-43ec-87d8-0f22ec93f69b",
+      "name": "Visual Brief Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        112
+      ],
+      "webhookId": "karkaba-visual-prompt-library"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "78d839ad-915b-444d-8fd5-9cbdcee77bee",
+              "name": "request_id",
+              "value": "={{ $json.body?.request_id || ('KARKABA-' + $now.toMillis()) }}",
+              "type": "string"
+            },
+            {
+              "id": "e5fb05b4-1227-4fc3-be1c-531e60f0248c",
+              "name": "campaign_name",
+              "value": "={{ $json.body?.campaign_name || 'KARKABA Visual Campaign' }}",
+              "type": "string"
+            },
+            {
+              "id": "976029fc-9b2c-4412-8270-f059964c863a",
+              "name": "visual_goal",
+              "value": "={{ $json.body?.visual_goal || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "0b8b0a08-8f8d-46b2-b0b3-f811bb513c72",
+              "name": "subject",
+              "value": "={{ $json.body?.subject || 'A relatable modern Egyptian family home' }}",
+              "type": "string"
+            },
+            {
+              "id": "d71c9ffb-1836-4984-afab-fefe9e7d5a46",
+              "name": "audience",
+              "value": "={{ $json.body?.audience || 'Egyptian mothers aged 30-50' }}",
+              "type": "string"
+            },
+            {
+              "id": "3a8d1459-fc3a-4e58-a255-28a69f8ceed3",
+              "name": "location",
+              "value": "={{ $json.body?.location || 'New Cairo and 5th Settlement' }}",
+              "type": "string"
+            },
+            {
+              "id": "dcc3ac9f-b4b2-4b5d-99d7-453c7a17c719",
+              "name": "platform",
+              "value": "={{ $json.body?.platform || 'Instagram' }}",
+              "type": "string"
+            },
+            {
+              "id": "9971a2a0-9126-40ba-86e9-7347f410014e",
+              "name": "format",
+              "value": "={{ $json.body?.format || '4:5 feed post' }}",
+              "type": "string"
+            },
+            {
+              "id": "d8f4d38a-9255-4a43-a8df-c4a8a158c6d7",
+              "name": "visual_style",
+              "value": "={{ $json.body?.visual_style || 'Realistic, warm natural light, modern and inviting' }}",
+              "type": "string"
+            },
+            {
+              "id": "45756743-02c6-4236-8c8d-188d93e4af9c",
+              "name": "key_message",
+              "value": "={{ $json.body?.key_message || 'Clutter has value / الكراكيب ليها قيمة' }}",
+              "type": "string"
+            },
+            {
+              "id": "313cb21d-c6f8-4c1f-a494-7e1c98152e91",
+              "name": "cta",
+              "value": "={{ $json.body?.cta || 'Give your items a second life' }}",
+              "type": "string"
+            },
+            {
+              "id": "9a59e0a4-bcc3-44e5-8f80-392dd671095f",
+              "name": "language",
+              "value": "={{ $json.body?.language || 'Egyptian Arabic and English' }}",
+              "type": "string"
+            },
+            {
+              "id": "eb36902e-a4a7-40f6-a653-5ab6c6e9c874",
+              "name": "brand_kit_key",
+              "value": "={{ $json.body?.brand_kit_key || 'KARKABA_DEFAULT' }}",
+              "type": "string"
+            },
+            {
+              "id": "a45d2987-78ba-4062-bb08-0a720d5d529b",
+              "name": "approved_brand_rules_override",
+              "value": "={{ $json.body?.approved_brand_rules || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "11339247-77aa-4250-a907-cdcd62698e59",
+              "name": "variation_count",
+              "value": "={{ Number($json.body?.variation_count || 3) }}",
+              "type": "number"
+            },
+            {
+              "id": "ffb802da-2fdd-43bf-b41d-78ecf6cbd634",
+              "name": "submitted_at",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "f271ec60-f018-4f1b-ac6c-68c1b7f39c3b",
+              "name": "version",
+              "value": "={{ Number($json.body?.version || 1) }}",
+              "type": "number"
+            },
+            {
+              "id": "00067a6c-143b-4f45-b21b-b1bd377e7a30",
+              "name": "parent_prompt_id",
+              "value": "={{ $json.body?.parent_prompt_id || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "aa416b3b-cfe6-4c43-82f6-e93161119054",
+      "name": "Normalize Visual Brief",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "visual-goal-not-empty",
+              "leftValue": "={{ $json.visual_goal }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "93a622bb-bc1c-4f47-b29a-a8abddcd08cd",
+      "name": "Validate Brief",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4i0hb1D0udiKYWBbrbCrwEv9BGflPXw98ZzzKqkJLQ",
+          "mode": "list",
+          "cachedResultName": "KARKABA_Approved_Brand_Context",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4i0hb1D0udiKYWBbrbCrwEv9BGflPXw98ZzzKqkJLQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1450527489,
+          "mode": "list",
+          "cachedResultName": "BrandKit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4i0hb1D0udiKYWBbrbCrwEv9BGflPXw98ZzzKqkJLQ/edit#gid=1450527489"
+        },
+        "options": {}
+      },
+      "id": "0968b8c5-9a73-490a-88dd-6b7efcc1e2af",
+      "name": "Load Approved Brand Context",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        688,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Hz2rhbwUvQyyboxf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "id": "60bf2960-bfce-40b4-9c89-66dabc8d3050",
+      "name": "Merge Brand Context",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const d = $json;\nconst brand = d.BrandKitKey || d.brandKitKey || {};\nconst input = $('Normalize Visual Brief').item.json;\nconst get = (k) => (d[k] !== undefined && d[k] !== null && d[k] !== '') ? d[k] : '';\nconst supplied = input.approved_brand_rules_override;\nconst context = supplied || [\n  get('BrandRules') && `Brand rules: ${get('BrandRules')}`,\n  get('Palette') && `Approved palette: ${get('Palette')}`,\n  get('Typography') && `Approved typography: ${get('Typography')}`,\n  get('LogoRules') && `Logo rules: ${get('LogoRules')}`,\n  get('ImageStyle') && `Image style: ${get('ImageStyle')}`,\n  get('Tone') && `Tone: ${get('Tone')}`\n].filter(Boolean).join('\\n');\nconst missing = [];\nif (!context) missing.push('approved brand rules');\nif (!get('Palette') && !/palette|colou?r/i.test(context)) missing.push('exact approved palette');\nif (!get('Typography') && !/typograph|font/i.test(context)) missing.push('approved typography');\nif (!get('LogoRules') && !/logo/i.test(context)) missing.push('logo usage rules');\nreturn {json:{...input, brand_context: context || 'No approved brand-kit rules were found. Do not invent exact colors, fonts, or logo specifications.', missing_brand_specs: missing, brand_context_source: supplied ? 'request_override' : (context ? 'BrandKit sheet' : 'missing')}};"
+      },
+      "id": "46b4b0c1-845b-4431-b850-78284854ecb7",
+      "name": "Build Prompt Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "HTTP-Referer",
+              "value": "https://karkaba.example"
+            },
+            {
+              "name": "X-Title",
+              "value": "KARKABA Visual Prompt Library"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({model: 'openai/gpt-4o-mini', temperature: 0.25, response_format: {type: 'json_object'}, messages: [{role: 'system', content: \"You are a senior visual campaign prompt engineer for KARKABA, a household-items reuse, resale, repair and donation concept for Egypt.\\nReturn valid JSON only with these exact keys:\\nmaster_prompt (string),\\nprompt_variations (array of exactly 3 objects, each with name, creative_route, prompt),\\nnegative_prompt (string),\\nlayout_guidance (object with aspect_ratio, composition, hierarchy, negative_space, text_placement),\\narabic_text_note (string),\\nediting_checklist (array of strings),\\nrequired_human_checks (array of strings),\\nbrand_specifications_missing (array of strings).\\nBrand positioning: \\\"Clutter has value\\\" / \\\"الكراكيب ليها قيمة\\\". Tone is warm, empathetic, calm, restorative and culturally appropriate.\\nUse only approved brand rules in the supplied context. Never invent exact brand colors, fonts, or logo specifications. If missing, explicitly note them.\\nPrompts must describe subject, Egyptian home context, composition, lighting, mood, visual hierarchy, platform format, and negative space for later text.\\nDo not instruct image models to render long Arabic copy; recommend adding and proofreading Arabic text in a design tool.\\nDo not claim to have seen or inspected an actual image when only text is provided. Human approval is mandatory. Generate the number of variations requested if it is 1-3; if requested count exceeds 3, return 3 and explain limitation in required_human_checks.\"}, {role: 'user', content: JSON.stringify($json)}]}) }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "c88c4e8c-7fa5-412b-86cd-270edcf7149c",
+      "name": "Generate Prompts with OpenRouter",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1360,
+        112
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const response = $json;\nconst raw = response.choices?.[0]?.message?.content ?? response.body?.choices?.[0]?.message?.content ?? '';\nconst cleaned = String(raw).replace(/^```(?:json)?\\s*/i, '').replace(/\\s*```$/, '').trim();\nlet parsed, parseError = false;\ntry { parsed = JSON.parse(cleaned); } catch (e) { parsed = {raw_ai_draft: cleaned}; parseError = true; }\nconst required = ['master_prompt','prompt_variations','negative_prompt','layout_guidance','arabic_text_note','editing_checklist','required_human_checks','brand_specifications_missing'];\nconst missing = required.filter(k => !(k in parsed));\nconst variationsValid = Array.isArray(parsed.prompt_variations) && parsed.prompt_variations.length >= 1 && parsed.prompt_variations.every(v => v && typeof v.prompt === 'string' && v.prompt.trim().length > 20);\nconst masterValid = typeof parsed.master_prompt === 'string' && parsed.master_prompt.trim().length > 20;\nconst input = $('Build Prompt Context').item.json;\nconst validationErrors = [];\nif (parseError) validationErrors.push('AI response was not valid JSON');\nif (missing.length) validationErrors.push('Missing fields: ' + missing.join(', '));\nif (!masterValid) validationErrors.push('master_prompt missing or too short');\nif (!variationsValid) validationErrors.push('prompt_variations must contain prompt text');\nif (!input.visual_goal) validationErrors.push('visual_goal is required');\nconst now = new Date().toISOString();\nconst slug = String(input.campaign_name || 'prompt').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,45) || 'prompt';\nconst promptId = `${slug}-${input.request_id}`;\nreturn {json:{\n  prompt_id: promptId,\n  request_id: input.request_id,\n  campaign_name: input.campaign_name,\n  visual_goal: input.visual_goal,\n  platform: input.platform,\n  format: input.format,\n  brand_kit_key: input.brand_kit_key,\n  brand_context_source: input.brand_context_source,\n  missing_brand_specs: input.missing_brand_specs,\n  prompt_payload: parsed,\n  validation: {valid: validationErrors.length === 0, errors: validationErrors, checked_at: now},\n  approval_status: validationErrors.length === 0 ? 'PENDING_HUMAN_REVIEW' : 'REJECTED_VALIDATION',\n  version: Number(input.version || 1),\n  parent_prompt_id: input.parent_prompt_id || '',\n  created_at: now,\n  updated_at: now,\n  raw_ai_response: raw\n}};"
+      },
+      "id": "59e33ec3-0f4d-4b0f-b6d7-21a6ebc12c1e",
+      "name": "Parse and Validate AI Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "validation-valid",
+              "leftValue": "={{ $json.validation.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "72289a11-89c3-4af4-b79d-a21738925ad9",
+      "name": "Prompt Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1824,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "15KJhW-5gllmBBtxHJU0ShVZ_EPOf2rNsVUGMI8u_zWw",
+          "mode": "list",
+          "cachedResultName": "KARKABA_Store_Pending_Prompt_Version_Google",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15KJhW-5gllmBBtxHJU0ShVZ_EPOf2rNsVUGMI8u_zWw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 225269826,
+          "mode": "list",
+          "cachedResultName": "PromptLibrary",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15KJhW-5gllmBBtxHJU0ShVZ_EPOf2rNsVUGMI8u_zWw/edit#gid=225269826"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PromptID": "={{ $json.prompt_id }}",
+            "RequestID": "={{ $json.request_id }}",
+            "CampaignName": "={{ $json.campaign_name }}",
+            "VisualGoal": "={{ $json.visual_goal }}",
+            "Platform": "={{ $json.platform }}",
+            "Format": "={{ $json.format }}",
+            "BrandKitKey": "={{ $json.brand_kit_key }}",
+            "MasterPrompt": "={{ $json.prompt_payload.master_prompt }}",
+            "NegativePrompt": "={{ $json.prompt_payload.negative_prompt }}",
+            "VariationsJSON": "={{ $json.prompt_payload.prompt_variations }}",
+            "LayoutGuidanceJSON": "={{ $json.prompt_payload.layout_guidance }}",
+            "ArabicTextNote": "={{ $json.prompt_payload.arabic_text_note }}",
+            "EditingChecklistJSON": "={{ $json.prompt_payload.editing_checklist }}",
+            "HumanChecksJSON": "={{ $json.prompt_payload.required_human_checks }}",
+            "ValidationStatus": "={{ $json.validation }}",
+            "ApprovalStatus": "={{ $json.approval_status }}",
+            "CreatedAt": "={{ $json.created_at }}",
+            "UpdatedAt": "={{ $json.updated_at }}",
+            "RawPayloadJSON": "={{ $json.raw_ai_response }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "PromptID",
+              "displayName": "PromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "RequestID",
+              "displayName": "RequestID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CampaignName",
+              "displayName": "CampaignName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VisualGoal",
+              "displayName": "VisualGoal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Format",
+              "displayName": "Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "BrandKitKey",
+              "displayName": "BrandKitKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Version",
+              "displayName": "Version",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ParentPromptID",
+              "displayName": "ParentPromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MasterPrompt",
+              "displayName": "MasterPrompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VariationsJSON",
+              "displayName": "VariationsJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NegativePrompt",
+              "displayName": "NegativePrompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "LayoutGuidanceJSON",
+              "displayName": "LayoutGuidanceJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ArabicTextNote",
+              "displayName": "ArabicTextNote",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "EditingChecklistJSON",
+              "displayName": "EditingChecklistJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "HumanChecksJSON",
+              "displayName": "HumanChecksJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ValidationStatus",
+              "displayName": "ValidationStatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ApprovalStatus",
+              "displayName": "ApprovalStatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviewer",
+              "displayName": "Reviewer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ReviewNotes",
+              "displayName": "ReviewNotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CreatedAt",
+              "displayName": "CreatedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "UpdatedAt",
+              "displayName": "UpdatedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "RawPayloadJSON",
+              "displayName": "RawPayloadJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "2f53058f-c992-493a-b500-d9ddbbcc5212",
+      "name": "Store Pending Prompt Version",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2064,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Hz2rhbwUvQyyboxf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1CT1SODXK-aXgo40AY86eRXgS5yjNZ1Bp_9FBRB1JSeQ",
+          "mode": "list",
+          "cachedResultName": "KARKABA_Log_Review_Request_Google_Sheets",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CT1SODXK-aXgo40AY86eRXgS5yjNZ1Bp_9FBRB1JSeQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 305196343,
+          "mode": "list",
+          "cachedResultName": "PromptReviews",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CT1SODXK-aXgo40AY86eRXgS5yjNZ1Bp_9FBRB1JSeQ/edit#gid=305196343"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PromptID": "={{ $json.PromptID }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "PromptID",
+              "displayName": "PromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Version",
+              "displayName": "Version",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision",
+              "displayName": "Decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviewer",
+              "displayName": "Reviewer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ReviewNotes",
+              "displayName": "ReviewNotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DecisionAt",
+              "displayName": "DecisionAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CreatedAt",
+              "displayName": "CreatedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "0965c155-9584-4935-a348-55a2fe6f74b1",
+      "name": "Log Review Request",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2304,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Hz2rhbwUvQyyboxf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ok:true, prompt_id: $('Parse and Validate AI Output').item.json.prompt_id, version: $('Parse and Validate AI Output').item.json.version, approval_status: $('Parse and Validate AI Output').item.json.approval_status, validation: $('Parse and Validate AI Output').item.json.validation, prompt_payload: $('Parse and Validate AI Output').item.json.prompt_payload, review_instructions: 'A reviewer must POST prompt_id, version, decision (APPROVED or REVISION_REQUIRED), reviewer, and notes to the /webhook/karkaba-visual-prompt-review endpoint. Do not publish or use externally until approved.'}) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "236b701a-71d2-4b52-9f0a-80b10a554c73",
+      "name": "Respond with Review Instructions",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2544,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ok:false, prompt_id:$json.prompt_id, approval_status:$json.approval_status, validation:$json.validation, prompt_payload:$json.prompt_payload}) }}",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "id": "5df018ca-f029-405b-963f-0cfc4535915f",
+      "name": "Respond Validation Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2064,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ok:false,error:'visual_goal is required'}) }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "1c261780-6f99-461e-9d44-f1dfbe20701e",
+      "name": "Respond Missing Visual Goal",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        688,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "karkaba-visual-prompt-review",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e429490c-39a5-49bd-95df-717541e8ae64",
+      "name": "Human Review Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        656
+      ],
+      "webhookId": "karkaba-visual-prompt-review"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1c6a29a-01fa-485f-ac72-0a2212f17234",
+              "name": "prompt_id",
+              "value": "={{ $json.body?.prompt_id || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "13979bd6-3514-402c-bd64-fb366a013295",
+              "name": "version",
+              "value": "={{ Number($json.body?.version || 0) }}",
+              "type": "number"
+            },
+            {
+              "id": "88738c39-2088-4977-bfe6-63b7aec07cf8",
+              "name": "decision",
+              "value": "={{ String($json.body?.decision || '').toUpperCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "1d958a6f-176e-4890-a83b-5a71c5775fb0",
+              "name": "reviewer",
+              "value": "={{ $json.body?.reviewer || 'unspecified reviewer' }}",
+              "type": "string"
+            },
+            {
+              "id": "7960b312-256e-4dd8-aad5-0579e1facf3c",
+              "name": "notes",
+              "value": "={{ $json.body?.notes || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "9a12cd6a-abbb-4105-9c81-19380a8a4dfc",
+              "name": "decision_at",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "17dba680-4641-4d3f-8bcf-80e97b259b98",
+      "name": "Normalize Review Decision",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        656
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const d=$json;\nconst errors=[];\nif(!d.prompt_id) errors.push('prompt_id is required');\nif(!Number.isInteger(Number(d.version)) || Number(d.version)<1) errors.push('version must be a positive integer');\nif(!['APPROVED','REVISION_REQUIRED','REJECTED'].includes(d.decision)) errors.push('decision must be APPROVED, REVISION_REQUIRED, or REJECTED');\nreturn {json:{...d,review_valid:errors.length===0,review_errors:errors}};"
+      },
+      "id": "96646059-3478-4387-90d4-a294fef2131d",
+      "name": "Validate Review Decision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        656
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "review-valid",
+              "leftValue": "={{ $json.review_valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8889f843-7fa4-4687-a0e9-caa6b67922a3",
+      "name": "Review Request Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        656
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1CT1SODXK-aXgo40AY86eRXgS5yjNZ1Bp_9FBRB1JSeQ",
+          "mode": "list",
+          "cachedResultName": "KARKABA_Log_Review_Request_Google_Sheets",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CT1SODXK-aXgo40AY86eRXgS5yjNZ1Bp_9FBRB1JSeQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 305196343,
+          "mode": "list",
+          "cachedResultName": "PromptReviews",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CT1SODXK-aXgo40AY86eRXgS5yjNZ1Bp_9FBRB1JSeQ/edit#gid=305196343"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PromptID": "={{ $json.PromptID }}",
+            "Decision": "={{ $json.ApprovalStatus }}",
+            "Reviewer": "={{ $json.Reviewer }}",
+            "ReviewNotes": "={{ $json.ReviewNotes }}",
+            "DecisionAt": "={{ $json.CreatedAt }}",
+            "CreatedAt": "={{ $json.CreatedAt }}",
+            "Version": "={{ $json.Version }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "PromptID",
+              "displayName": "PromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Version",
+              "displayName": "Version",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Decision",
+              "displayName": "Decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer",
+              "displayName": "Reviewer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ReviewNotes",
+              "displayName": "ReviewNotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DecisionAt",
+              "displayName": "DecisionAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CreatedAt",
+              "displayName": "CreatedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "86ad3eb1-e327-418a-887e-4fd2aa41cc27",
+      "name": "Append Review Decision Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Hz2rhbwUvQyyboxf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ok:true,prompt_id:$('Normalize Review Decision').item.json.prompt_id,version:$('Normalize Review Decision').item.json.version,decision:$('Normalize Review Decision').item.json.decision,reviewer:$('Normalize Review Decision').item.json.reviewer,updated_at:$('Normalize Review Decision').item.json.decision_at}) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "bed365f1-e27e-4c09-af18-e68eda3986cf",
+      "name": "Respond Review Updated",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1392,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ok:false,error:'Invalid review request',details:$json.review_errors}) }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "15b91bba-05b1-41df-a5fa-d5c9c31b5fcd",
+      "name": "Respond Invalid Review",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        912,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "15KJhW-5gllmBBtxHJU0ShVZ_EPOf2rNsVUGMI8u_zWw",
+          "mode": "list",
+          "cachedResultName": "KARKABA_Store_Pending_Prompt_Version_Google",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15KJhW-5gllmBBtxHJU0ShVZ_EPOf2rNsVUGMI8u_zWw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 225269826,
+          "mode": "list",
+          "cachedResultName": "PromptLibrary",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15KJhW-5gllmBBtxHJU0ShVZ_EPOf2rNsVUGMI8u_zWw/edit#gid=225269826"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PromptID": "={{ $json.prompt_id }}",
+            "ApprovalStatus": "={{ $json.decision }}",
+            "Reviewer": "={{ $json.reviewer }}",
+            "ReviewNotes": "={{ $json.notes }}",
+            "CreatedAt": "={{ $json.decision_at }}",
+            "UpdatedAt": "={{ $json.decision_at }}",
+            "Version": "={{ $json.version }}"
+          },
+          "matchingColumns": [
+            "PromptID"
+          ],
+          "schema": [
+            {
+              "id": "PromptID",
+              "displayName": "PromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "RequestID",
+              "displayName": "RequestID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CampaignName",
+              "displayName": "CampaignName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "VisualGoal",
+              "displayName": "VisualGoal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Format",
+              "displayName": "Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BrandKitKey",
+              "displayName": "BrandKitKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Version",
+              "displayName": "Version",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ParentPromptID",
+              "displayName": "ParentPromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "MasterPrompt",
+              "displayName": "MasterPrompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "VariationsJSON",
+              "displayName": "VariationsJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NegativePrompt",
+              "displayName": "NegativePrompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "LayoutGuidanceJSON",
+              "displayName": "LayoutGuidanceJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ArabicTextNote",
+              "displayName": "ArabicTextNote",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "EditingChecklistJSON",
+              "displayName": "EditingChecklistJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "HumanChecksJSON",
+              "displayName": "HumanChecksJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ValidationStatus",
+              "displayName": "ValidationStatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ApprovalStatus",
+              "displayName": "ApprovalStatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer",
+              "displayName": "Reviewer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ReviewNotes",
+              "displayName": "ReviewNotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CreatedAt",
+              "displayName": "CreatedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "UpdatedAt",
+              "displayName": "UpdatedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "RawPayloadJSON",
+              "displayName": "RawPayloadJSON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "cd7f3a63-e986-4ec3-aec0-ad3ec115122c",
+      "name": "Update Prompt Approval Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        912,
+        560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Hz2rhbwUvQyyboxf",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Visual Brief Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Visual Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Visual Brief": {
+      "main": [
+        [
+          {
+            "node": "Validate Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Brief": {
+      "main": [
+        [
+          {
+            "node": "Load Approved Brand Context",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Brand Context",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Missing Visual Goal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Approved Brand Context": {
+      "main": [
+        [
+          {
+            "node": "Merge Brand Context",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Brand Context": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt Context": {
+      "main": [
+        [
+          {
+            "node": "Generate Prompts with OpenRouter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Prompts with OpenRouter": {
+      "main": [
+        [
+          {
+            "node": "Parse and Validate AI Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse and Validate AI Output": {
+      "main": [
+        [
+          {
+            "node": "Prompt Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Valid?": {
+      "main": [
+        [
+          {
+            "node": "Store Pending Prompt Version",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Validation Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Pending Prompt Version": {
+      "main": [
+        [
+          {
+            "node": "Log Review Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Review Request": {
+      "main": [
+        [
+          {
+            "node": "Respond with Review Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human Review Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Review Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Review Decision": {
+      "main": [
+        [
+          {
+            "node": "Validate Review Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Review Decision": {
+      "main": [
+        [
+          {
+            "node": "Review Request Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Request Valid?": {
+      "main": [
+        [
+          {
+            "node": "Update Prompt Approval Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Invalid Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Review Decision Log": {
+      "main": [
+        [
+          {
+            "node": "Respond Review Updated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Prompt Approval Status": {
+      "main": [
+        [
+          {
+            "node": "Append Review Decision Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f78a6e44-9fd0-4ccf-8a7b-1bddf7dfa439",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "50ba33c685bc3b60394616602a106da0d363a0bd6277ba4d27f8bd2b51332984"
+  },
+  "nodeGroups": [],
+  "id": "SZCFU3yp4hLn2LOo",
+  "tags": []
+}
