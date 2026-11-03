@@ -116,4 +116,4 @@ Key Deliverable: Fully demonstrable workflow integration/simulation for AI Promp
    - n8n AI Automation Video: 9.KARKABA.Automation.AI.Visual.Prompt.Library.mp4
    
    - AI Automation video: KARKABA.Automation.AI.Visual.Prompt.Library.Postman.Collection.json
-     
+10. Google Drive: https://drive.google.com/drive/folders/1-VP_q5mPOIJeLkqkbJjck1hxl6y2En6R?usp=sharing
