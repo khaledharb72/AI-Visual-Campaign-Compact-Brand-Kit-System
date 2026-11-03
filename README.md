@@ -110,10 +110,9 @@ Key Deliverable: Fully demonstrable workflow integration/simulation for AI Promp
 6. Posts: 6.KARKABA.Post.1.jpeg / 6.KARKABA.Post.2.jpeg / 6.KARKABA.Post.3.jpeg / 6.KARKABA.Post.4.jpeg
 7. Reel Video: 7.KARKABA.Facebook.Reel.mp4 / 7.KARKABA.Instagram.Reel.mp4
 8. Brand Kit: 8.KARKABA.Full.BrandKit.Guidelines.pdf
-9. Automation:
+9. Landing Page: 9.Landing.Page.html / karkaba_hijab_woman.jpg
+10. Automation:
    - n8n AI Automation: 9.KARKABA.Automation.AI.Visual.Prompt.Library.json 
    - Postman Webhook Post data: 9.KARKABA.Automation.AI.Visual.Prompt.Library.Postman.Collection.json
-   - n8n AI Automation Video: 9.KARKABA.Automation.AI.Visual.Prompt.Library.mp4
-   
-   - AI Automation video: KARKABA.Automation.AI.Visual.Prompt.Library.Postman.Collection.json
-10. Google Drive: https://drive.google.com/drive/folders/1-VP_q5mPOIJeLkqkbJjck1hxl6y2En6R?usp=sharing
+   - n8n AI Automation Video: 9.KARKABA.Automation.AI.Visual.Prompt.Library.mp4   
+11. Google Drive: https://drive.google.com/drive/folders/1-VP_q5mPOIJeLkqkbJjck1hxl6y2En6R?usp=sharing
