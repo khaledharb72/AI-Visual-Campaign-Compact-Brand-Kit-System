@@ -1,7 +1,7 @@
 KARKABA كركبة
 ------------
-Google Drive: https://drive.google.com/drive/folders/1-VP_q5mPOIJeLkqkbJjck1hxl6y2En6R?usp=sharing
-Live Landing Page: https://karkaba-cairo-brand-launch.lovable.app/
+- Google Drive: https://drive.google.com/drive/folders/1-VP_q5mPOIJeLkqkbJjck1hxl6y2En6R?usp=sharing
+- Live Landing Page: https://karkaba-cairo-brand-launch.lovable.app/
 
 1- Project Name: 
 -
